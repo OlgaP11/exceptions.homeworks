@@ -1,6 +1,8 @@
-package homework3.exceptions;
+package homework3.exceptions.impl;
 
-public class IncorrectDateFormatException extends Exception{
+import homework3.exceptions.PersonDataFormatException;
+
+public class IncorrectDateFormatException extends PersonDataFormatException {
     public IncorrectDateFormatException() {
         System.out.println("Неверный формат даты рождения. Запись в файл не произведена.");
     }

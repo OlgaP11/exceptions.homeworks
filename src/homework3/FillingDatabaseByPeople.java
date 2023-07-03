@@ -1,6 +1,7 @@
 package homework3;
 
-import homework3.exceptions.*;
+import homework3.exceptions.PersonDataFormatException;
+import homework3.exceptions.impl.*;
 
 import java.io.FileWriter;
 import java.io.IOException;
@@ -9,7 +10,7 @@ import java.util.Scanner;
 
 public class FillingDatabaseByPeople {
     public static void main(String[] args) throws Exception {
-        try (Scanner scan = new Scanner(System.in)) {
+        try (Scanner scan = new Scanner(System.in)){
             System.out.println("Введите следующие данные:\n" +
                     "фамилию, имя, отчество, " +
                     "дату рождения в формате ДД.ММ.ГГГГ, " +
@@ -18,9 +19,9 @@ public class FillingDatabaseByPeople {
                     "Данные необходимо ввести одной строкой через пробел:\n" +
                     "Фамилия Имя Отчество датарождения номертелефона пол");
 
-            String [] data = scan.nextLine().split(" ");
+            String[] data = scan.nextLine().split(" ");
 
-            if(data.length != 6){
+            if (data.length != 6) {
                 throw new AmountOfElementsException(data.length);
             } else {
                 String lastName = data[0];
@@ -37,32 +38,18 @@ public class FillingDatabaseByPeople {
                 checkPhoneNumber(phoneNumber);
                 checkGender(gender);
 
-                StringBuilder builder = new StringBuilder();
-                builder.append(lastName);
-                builder.append(" ");
-                builder.append(firstName);
-                builder.append(" ");
-                builder.append(patronymic);
-                builder.append(" ");
-                builder.append(dateOfBirth);
-                builder.append(" ");
-                builder.append(phoneNumber);
-                builder.append(" ");
-                builder.append(gender);
-                builder.append("\n");
+                Person person = new Person(lastName, firstName, patronymic, dateOfBirth, phoneNumber, gender);
 
-                if(writeData(lastName, builder.toString())){
+                if (writeData(lastName, person.toString())) {
                     System.out.println("Данные успешно записаны.");
                 }
             }
 
-        } catch (AmountOfElementsException | IncorrectPhoneNumberFormatException | IncorrectDateFormatException
-                | IncorrectGenderFormatException | PersonNameFormatException e){
+        } catch (PersonDataFormatException e) {
             e.printStackTrace();
-        } catch (IOException e){
+        } catch (IOException e) {
             System.out.println("Данные не были записаны. Ошибка при работе с файлом.");
         }
-
     }
 
     public static boolean isString (String string) throws PersonNameFormatException {

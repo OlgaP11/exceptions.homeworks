@@ -1,6 +1,8 @@
-package homework3.exceptions;
+package homework3.exceptions.impl;
 
-public class IncorrectPhoneNumberFormatException extends Exception{
+import homework3.exceptions.PersonDataFormatException;
+
+public class IncorrectPhoneNumberFormatException extends PersonDataFormatException {
     public IncorrectPhoneNumberFormatException() {
         System.out.println("Введен некорректный номер телефона. Запись в файл не произведена.");
     }

@@ -1,6 +1,8 @@
-package homework3.exceptions;
+package homework3.exceptions.impl;
 
-public class IncorrectGenderFormatException extends Exception{
+import homework3.exceptions.PersonDataFormatException;
+
+public class IncorrectGenderFormatException extends PersonDataFormatException {
     public IncorrectGenderFormatException() {
         System.out.println("Некорретно введен пол. Запись в файл не произведена.");
     }

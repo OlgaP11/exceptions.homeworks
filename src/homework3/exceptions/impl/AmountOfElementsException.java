@@ -1,6 +1,8 @@
-package homework3.exceptions;
+package homework3.exceptions.impl;
 
-public class AmountOfElementsException extends Exception{
+import homework3.exceptions.PersonDataFormatException;
+
+public class AmountOfElementsException extends PersonDataFormatException {
     private int amountOfElements;
     private static final int CORRECT_AMOUNT_OF_ELEMS = 6;
 
